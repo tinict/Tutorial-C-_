@@ -1,0 +1,93 @@
+#include <bits/stdc++.h>
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+class SINHVIEN
+{
+	private:
+		string msv,ht;
+		double dtb;
+	public:
+		void nhap();
+		void xuat();
+		string get_msv();
+		double get_dtb();
+};
+
+string SINHVIEN::get_msv()
+{
+	return msv;
+}
+
+double SINHVIEN::get_dtb()
+{
+	return dtb;
+}
+
+void SINHVIEN::nhap()
+{
+	cout << "Ma sinh vien: ";
+	getline(cin,msv);
+	cout << "Ho ten: ";
+	getline(cin,ht);
+	cout << "Diem trung binh: ";
+	cin >> dtb;
+}
+
+void SINHVIEN::xuat()
+{
+	cout << msv << "\t\t" << ht << "\t\t" << dtb << endl;
+}
+
+bool check(SINHVIEN s[], int n, string t)
+{
+	for(int i = 0 ; i < n ; i++)
+		if(s[i].get_msv() == t)
+			return false;
+	return true;
+}
+
+void arr_sv(SINHVIEN s[], int n)
+{
+	for(int i = 0 ; i < n ; i++)
+	{
+		cin.ignore();
+		s[i].nhap();
+		while(check(s, i, s[i].get_msv()) != true && i != 0)
+		{
+			cout << "Ma sinh vien nay da ton tai !" << endl;
+			cout << "Moi ban nhap lai " << endl;
+			cin.ignore();
+			s[i].nhap();
+		}
+	}
+}
+
+double Average_sv(SINHVIEN s[], int n)
+{
+	double sum = 0;
+	for(int i = 0 ; i < n ; i++)
+		sum += s[i].get_dtb();
+	return sum/n;
+}
+
+void arr_opsv(SINHVIEN s[], int n)
+{
+	for(int i = 0 ; i < n ; ++i)
+		if(s[i].get_dtb() >  Average_sv(s,n))
+			s[i].xuat();
+}
+
+int main()
+{
+	int n;
+	cout << "So luong: ";
+	cin >> n;
+	SINHVIEN s[n+1];
+	arr_sv(s,n);
+	cout << "---------------------" << endl;
+	arr_opsv(s,n);
+	return 0;
+}
