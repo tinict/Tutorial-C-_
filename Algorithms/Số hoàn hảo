@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+bool check_sohoanhao(int n)
+{
+	int sum = 0;
+	for(int i = 1 ; i < n ; i++)
+		if(n % i == 0)
+			sum += i;
+	if(sum == n)
+		return true;
+	return false;
+}
+
+int main()
+{
+	int x;
+	cin >> x;
+	cout << check_sohoanhao(x);
+	return 0;
+}
