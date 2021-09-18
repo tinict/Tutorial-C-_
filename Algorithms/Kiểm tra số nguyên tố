@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+bool check_songuyento(int n)
+{
+	int count = 0; // bien dem
+	for(int i = 2 ; i <= n ; i++) // neu co 2 uoc tro len khong la so nguyên to
+		if(n % i == 0)
+			count++;
+	if(count == 1)
+		return true;
+	return false;
+}
+
+int main()
+{
+	int x;
+	cin >> x;
+	cout << check_songuyento(x);
+	return 0;
+}
