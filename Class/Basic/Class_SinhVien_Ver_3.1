@@ -1,0 +1,107 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class SinhVien
+{
+	private:
+		string msv,ht;
+		double dtb;
+	public:
+		void get_msv();
+		string if_msv();
+		void get_ht();
+		void get_dtb();
+		float if_dtb();
+		void xuat();
+};
+
+void SinhVien::get_msv()
+{
+	cout << "Nhap MSV: ";
+	getline(cin,msv);
+}
+
+string SinhVien::if_msv()
+{
+	return msv;
+}
+
+void SinhVien::get_ht()
+{
+	cout << "Ho va Ten: ";
+	getline(cin,ht);
+}
+
+void SinhVien::get_dtb()
+{
+	cout << "DTB: ";
+	cin >> dtb;
+}
+
+float SinhVien::if_dtb()
+{
+	return dtb;
+}
+
+void SinhVien::xuat()
+{
+	cout << msv << "\t\t" << ht << "\t\t" << dtb << endl;
+}
+
+SinhVien s[50];
+bool check_msv(string a[], int k, string t)
+{
+	for(int i = 0 ; i < k ; i++)
+		if(a[i] == t)
+			return false;
+	return true;
+}
+
+void arr_sv(SinhVien s[], int n)
+{
+	int x = 0;
+	string a[50];
+	for(int i = 0; i < n; i++)
+	{
+		cin.ignore();
+		s[i].get_msv();
+		while(check_msv(a,i,s[i].if_msv()) == false && i != 0)
+		{
+			cout << "Ma sinh vien da ton tai !" << endl;
+			cout << "Moi nhap lai-> ";
+			s[i].get_msv();
+		}
+		a[x++] = s[i].if_msv();
+		s[i].get_ht();
+		s[i].get_dtb();
+	}
+}
+
+float avg(SinhVien s[], int n)
+{
+	float sum = 0;
+	int i = 0;
+	for(i = 0 ; i < n ; i++)
+		sum += s[i].if_dtb();
+	return sum / n;
+}
+
+void op_sv(SinhVien s[], int n)
+{
+	cout << "MSV" << "\t\t" << "Ho va Ten" << "\t" << "DTB" << endl;
+	for(int i = 0 ; i < n ; i++)
+	{
+		if(s[i].if_dtb() > avg(s,n))
+			s[i].xuat();
+	}
+}
+
+int main()
+{
+	cout << "So luong: ";
+	int n;
+	cin >> n;
+	arr_sv(s,n);
+	op_sv(s,n);
+ 	return 0;
+}
