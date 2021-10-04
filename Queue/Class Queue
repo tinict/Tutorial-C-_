@@ -1,0 +1,68 @@
+#include <bits/stdc++.h>
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+#define Max 100
+
+class Queue
+{
+	private:
+		int a[Max];
+	public:
+		int Size;
+		Queue(int i)
+		{
+			i = 0;
+			Size = i;
+		}
+		Queue insert(int x);
+		int show(int i);
+		Queue remove(int i);
+		bool isEmpty();
+		bool isFull();
+};
+
+Queue Queue::insert(int x)
+{
+	return a[Size++] = x;
+}
+
+Queue Queue::remove(int k)
+{
+	int n = Size;
+	--Size;
+	int j = 0;
+	for(int i = 0 ; i < n ; i++)
+		if(i != k)
+			a[j++] = a[i];
+}
+
+int Queue::show(int i)
+{
+	return a[i]; 
+}
+
+bool Queue::isEmpty()
+{
+	if(Size == 0)
+		return true;
+	return false;
+}
+
+bool Queue::isFull()
+{
+	if(Size < Max)
+		return true;
+	return false;
+}
+
+int main()
+{
+	Queue q(0);
+	q.insert(3);
+	q.insert(4);
+	q.remove(0);
+	cout << q.show(0);
+	return 0;
+}
