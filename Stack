@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+#define Max 100
+
+class Stack
+{
+	private:
+		int Size;
+		int S[Max];
+	public:
+		Stack(int t)
+		{
+			Size = t;
+		}
+		bool isEmpty(); // kiem tra stack co rong
+		bool isFull(); // kiem tra stack co day khong
+		void push(int x); // nap vao stack
+		int pop(); // lay ra khoi stack
+};
+
+
+bool Stack::isEmpty()
+{
+	if(Size == 0)
+		return false;
+	return true;
+}
+
+bool Stack::isFull()
+{
+	if(Size == Max)
+		return true;
+	return false;
+}
+
+void Stack::push(int x)
+{
+	S[Size++] = x;
+}
+
+int Stack::pop()
+{
+	return S[--Size];
+}
+
+int main()
+{
+	Stack s(5);
+	//s.isEmpty();
+	//s.isFull();
+	s.push(5);
+	s.push(4);
+	int x = s.pop();
+	cout << x << " ";
+	int y = s.pop();
+	cout << y;
+	return 0;
+}
