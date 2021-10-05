@@ -1,0 +1,7 @@
+//Nếu trên Window thì bạn có thể dùng getch() trong conio.h để bắt ESC
+//Mã của ESC = 27
+do 
+{
+  c = getch();
+}
+while(c != 27);
